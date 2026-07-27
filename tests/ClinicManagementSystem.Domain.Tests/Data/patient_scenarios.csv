@@ -1,0 +1,36 @@
+FirstName,LastName,DateOfBirth,GenderId,Phone,Email,Address,IsValid
+Liam,Johnson,1980-08-08,1,555-0112,local@sub_domain.example.com,Addr,False
+Ava,Jones,1986-12-12,1,555-0114,unicode@例え.テスト,Addr,False
+Noah,Smith,1987-09-09,1,555-0111,user..dots@example.com,Addr,False
+Miguel,Torres,1970-06-08,1,555-0106,user@ example.com,12 Birch St,False
+Carlos,Ramirez,1985-03-12,1,555-0100,valid@example.com,Addr,True
+Ana,Gomez,1990-07-22,2,555-0101,first.last@example.co.uk,Addr,True
+Luis,Martinez,1978-11-05,1,555-0102,with+tag@example.com,78 Pine Rd,True
+Mariana,Lopez,1995-02-17,2,555-0103,user.name+tag@sub.example.com,9 Elm St,True
+Jose,Fernandez,1982-09-30,1,555-0104,UPPERCASE@EXAMPLE.COM,200 Cedar Blvd,True
+Sofia,Diaz,2000-01-15,2,555-0105, user@example.com ,77 Maple Ln,True
+Valeria,Ruiz,1988-12-03,2,555-0107,missingatsymbol.example.com,34 Spruce Ave,False
+Alex,Santos,1993-05-25,3,555-0108,missingdomain@,56 Willow Rd,False
+Taylor,Morgan,1999-10-10,4,555-0109,@missinglocal.com,101 River St,False
+Emma,Stone,1992-04-01,1,555-0110,.userdotstart@example.com,Addr,False
+Mia,Davis,1993-07-07,1,555-0115,very.long.local.part.but.still.valid@example.com,Addr,True
+Ethan,Wilson,1994-11-11,1,555-0116,NULL,Addr,False
+Mason,Moore,1979-02-02,1,555-0117,,Addr,True
+Sophia,Taylor,1983-06-06,2,555-0118,email@sub.example.co,Addr,True
+Isabella,Anderson,1996-01-01,1,555-0119,user@.example.com,Addr,False
+Harper,White,1998-02-02,1,555-0122,user@exam_ple.com,Addr,False
+Abigail,Martin,1997-09-09,1,555-0124,verylonglocalpartthatiswaytoolongbutstillacceptable@example.com,Addr,True
+Lucas,Lee,1990-10-10,1,555-0125,missing@tld,Addr,False
+Ella,Walker,1992-02-02,2,555-0126,user+category@example.travel,Addr,True
+Zoe,Hall,1988-03-03,1,555-0127,quoted"local"@example.com,Addr,False
+Ryan,Allen,1985-04-04,1,555-0128,user@sub.example.com,Addr,True
+Chloe,Young,1991-06-06,1,555-0129,space in local@exa mple.com,Addr,False
+Jack,Hernandez,1982-07-07,1,555-0130,valid.symbols+tag@example.co,Addr,True
+Nora,Kelly,1977-08-08,1,555-0131,admin@mailserver1,Addr,False
+Owen,Bailey,1999-09-09,1,555-0132,first.last@iana.org,Addr,True
+Luca,Price,1994-12-12,1,555-0133,user%example@example.org,Addr,True
+Leah,Reed,1986-11-11,1,555-0134,very..bad@example.com,Addr,False
+Ivy,Bennett,1993-01-01,2,555-0135,leading.space@ example.com,Addr,False
+Eli,Cooper,1981-05-05,1,555-0136,good.email+filter@example.com,Addr,True
+Maya,Richardson,1995-08-08,2,555-0137,plainaddress,Addr,False
+
