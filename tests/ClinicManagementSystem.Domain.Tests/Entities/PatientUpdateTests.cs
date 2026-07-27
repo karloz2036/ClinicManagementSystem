@@ -226,5 +226,7 @@ namespace ClinicManagementSystem.Domain.Tests.Entities
             Assert.Equal("carlos@example.com", patient.Email);
             Assert.Equal("Original Address", patient.Address);
         }
+
+        //pruebas de una nueva rama
     }
 }
