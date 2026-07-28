@@ -34,7 +34,7 @@ namespace ClinicManagementSystem.Infrastructure.Repositories
         {
             var patient = await _context.Patients
                 .Include(p => p.Gender)
-                .FirstOrDefaultAsync(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.Id == id, cancellation);
 
             return patient;
         }

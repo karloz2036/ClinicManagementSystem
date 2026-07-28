@@ -49,10 +49,10 @@ namespace ClinicManagementSystem.Application.Features.Patients.Services
         {
             var patient = await _patientRepository.GetByIdAsync(id, cancellationToken);
 
-            if (patient == null)
+            if (patient is null)
                 return null;
 
-            return patient == null ? null : MapToDto(patient);
+            return MapToDto(patient);
 
             /*
             return new PatientDto
@@ -134,7 +134,7 @@ namespace ClinicManagementSystem.Application.Features.Patients.Services
             else
                 patient.Deactivate();
 
-            await _patientRepository.SaveChangesAsync();
+            await _patientRepository.SaveChangesAsync(cancellationToken);
 
             var updatedPatient = await _patientRepository.GetByIdAsync(patientId, cancellationToken);
 
