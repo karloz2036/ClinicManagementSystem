@@ -3,6 +3,16 @@ using ClinicManagementSystem.Application.Features.Genders.Interfaces;
 using ClinicManagementSystem.Application.Features.Genders.Services;
 using ClinicManagementSystem.Application.Features.Patients.Interfaces;
 using ClinicManagementSystem.Application.Features.Patients.Services;
+using ClinicManagementSystem.Application.Features.Specialties.Interfaces;
+using ClinicManagementSystem.Application.Features.Specialties.Services;
+using ClinicManagementSystem.Application.Features.ConsultingRooms.Interfaces;
+using ClinicManagementSystem.Application.Features.ConsultingRooms.Services;
+using ClinicManagementSystem.Application.Features.Doctors.Interfaces;
+using ClinicManagementSystem.Application.Features.Doctors.Services;
+using ClinicManagementSystem.Application.Features.AppointmentStatuses.Interfaces;
+using ClinicManagementSystem.Application.Features.AppointmentStatuses.Services;
+using ClinicManagementSystem.Application.Features.Appointments.Interfaces;
+using ClinicManagementSystem.Application.Features.Appointments.Services;
 using ClinicManagementSystem.Infrastructure.Data;
 using ClinicManagementSystem.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -23,6 +33,17 @@ builder.Services.AddScoped<IGenderService, GenderService>();
 
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped<IPatientService, PatientService>();
+
+builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
+builder.Services.AddScoped<ISpecialtyService, SpecialtyService>();
+builder.Services.AddScoped<IConsultingRoomRepository, ConsultingRoomRepository>();
+builder.Services.AddScoped<IConsultingRoomService, ConsultingRoomService>();
+builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+builder.Services.AddScoped<IDoctorService, DoctorService>();
+builder.Services.AddScoped<IAppointmentStatusRepository, AppointmentStatusRepository>();
+builder.Services.AddScoped<IAppointmentStatusService, AppointmentStatusService>();
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 
 
 builder.Services.AddControllers(); // Add this line to register controllers
@@ -47,26 +68,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers(); // Add this line to map controller routes
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
 
 app.MapGet("/api/database-test", async (ClinicDbContext dbContext) =>
 {
@@ -93,8 +94,3 @@ app.MapGet("/api/genders-test", async (ClinicDbContext dbContext) =>
 });
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

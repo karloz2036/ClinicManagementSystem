@@ -15,6 +15,6 @@ namespace ClinicManagementSystem.Application.Features.Patients.Interfaces
         Task<PatientDto?> GetByIdAsync(int id, CancellationToken cancellationToken = default);
         Task<PatientDto> CreateAsync(CreatePatientDto dto, CancellationToken cancellationToken = default);
         Task<PatientDto?> UpdateAsync(int id, UpdatePatientDto dto, CancellationToken cancellationToken = default);
-        Task<PatientDto?> UpdateStatus(int patientId, UpdatePatientStatusDto dto, CancellationToken cancellationToken = default);
+        Task<PatientDto?> UpdateStatusAsync(int patientId, UpdatePatientStatusDto dto, CancellationToken cancellationToken = default);
     }
 }

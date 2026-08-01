@@ -1,15 +1,10 @@
-using System.Collections.Generic;
+namespace ClinicManagementSystem.Domain.Entities;
 
-namespace ClinicManagementSystem.Domain.Entities
+public class AppointmentStatus
 {
-    public class AppointmentStatus
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; } = string.Empty;
-
-        public bool IsActive { get; set; }
-
-        public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
-    }
+    private AppointmentStatus() { }
+    public int Id { get; private set; }
+    public string Name { get; private set; } = string.Empty;
+    public bool IsActive { get; private set; }
+    public ICollection<Appointment> Appointments { get; private set; } = new List<Appointment>();
 }

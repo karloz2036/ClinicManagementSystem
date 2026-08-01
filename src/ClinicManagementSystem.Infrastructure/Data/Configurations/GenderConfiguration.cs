@@ -19,6 +19,8 @@ namespace ClinicManagementSystem.Infrastructure.Data.Configurations
             builder.Property(g => g.IsActive)
                 .IsRequired();
 
+            builder.HasIndex(g => g.Name).IsUnique();
+
             builder.HasMany(g => g.Patients)
                 .WithOne(p => p.Gender)
                 .HasForeignKey(p => p.GenderId);

@@ -77,7 +77,7 @@ namespace ClinicManagementSystem.Api.Controllers
         [HttpPatch("{patientId}/status")]
         public async Task<ActionResult<PatientDto>> UpdateStatusPatientStatus(int patientId, UpdatePatientStatusDto dto, CancellationToken cancellationToken)
         {
-            var patient = await _patientService.UpdateStatus(patientId, dto, cancellationToken);
+            var patient = await _patientService.UpdateStatusAsync(patientId, dto, cancellationToken);
 
             if (patient is null)
                 return NotFound();

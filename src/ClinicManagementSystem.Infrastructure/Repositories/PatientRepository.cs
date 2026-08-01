@@ -51,6 +51,11 @@ namespace ClinicManagementSystem.Infrastructure.Repositories
             return patients;
         }
 
+        public Task<bool> ExistsActiveAsync(int id, CancellationToken cancellationToken = default)
+        {
+            return _context.Patients.AnyAsync(p => p.Id == id && p.IsActive, cancellationToken);
+        }
+
         public async Task<Patient> AddAsync(Patient patient, CancellationToken cancellationToken = default)
         {
             await _context.Patients.AddAsync(patient, cancellationToken);

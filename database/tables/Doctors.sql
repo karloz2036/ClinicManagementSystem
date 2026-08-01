@@ -9,6 +9,7 @@ BEGIN
 		[PhoneNumber] NVARCHAR(20) NULL,
 		[Email] NVARCHAR(100) NULL,
 		[IsActive] BIT NOT NULL CONSTRAINT [DF_Doctors_IsActive] DEFAULT (1),
-		[CreatedAt] DATETIME2 NOT NULL CONSTRAINT [DF_Doctors_CreatedAt] DEFAULT (SYSDATETIME())
+		[CreatedAt] DATETIME2 NOT NULL CONSTRAINT [DF_Doctors_CreatedAt] DEFAULT (SYSDATETIME()),
+		CONSTRAINT [UQ_Doctors_ProfessionalLicense] UNIQUE ([ProfessionalLicense])
 	);
 END

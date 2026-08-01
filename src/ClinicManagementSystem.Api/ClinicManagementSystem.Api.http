@@ -1,6 +1,64 @@
-@ClinicManagementSystem.Api_HostAddress = http://localhost:5220
+@ClinicApi = https://localhost:7001
 
-GET {{ClinicManagementSystem.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+### Health/database check
+GET {{ClinicApi}}/api/database-test
+
+### Catalogs
+GET {{ClinicApi}}/api/gender
 
 ###
+GET {{ClinicApi}}/api/appointment-statuses
+
+### Specialties
+GET {{ClinicApi}}/api/specialties
+
+###
+POST {{ClinicApi}}/api/specialties
+Content-Type: application/json
+
+{
+  "name": "Dermatology",
+  "description": "Skin health"
+}
+
+### Consulting rooms
+GET {{ClinicApi}}/api/consultingrooms
+
+###
+POST {{ClinicApi}}/api/consultingrooms
+Content-Type: application/json
+
+{
+  "name": "Room 3",
+  "location": "Second floor"
+}
+
+### Doctors (replace specialty ids with ids from your database)
+POST {{ClinicApi}}/api/doctors
+Content-Type: application/json
+
+{
+  "firstName": "Elena",
+  "lastName": "Santos",
+  "professionalLicense": "LIC-2001",
+  "phoneNumber": "555-3001",
+  "email": "elena.santos@example.com",
+  "specialtyIds": [1, 2]
+}
+
+### Appointments (replace all ids; dates must be in the future)
+POST {{ClinicApi}}/api/appointments
+Content-Type: application/json
+
+{
+  "patientId": 1,
+  "doctorId": 1,
+  "consultingRoomId": 1,
+  "appointmentStatusId": 1,
+  "startDateTime": "2030-08-05T09:00:00",
+  "endDateTime": "2030-08-05T10:00:00",
+  "notes": "First consultation"
+}
+
+### Appointment query filters
+GET {{ClinicApi}}/api/appointments?from=2030-08-01T00:00:00&to=2030-08-31T23:59:59

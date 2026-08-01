@@ -37,6 +37,8 @@ namespace ClinicManagementSystem.Infrastructure.Data.Configurations
                 .HasColumnType("datetime2")
                 .IsRequired();
 
+            builder.HasIndex(d => d.ProfessionalLicense).IsUnique();
+
             builder.HasMany(d => d.Appointments)
                 .WithOne(a => a.Doctor)
                 .HasForeignKey(a => a.DoctorId);

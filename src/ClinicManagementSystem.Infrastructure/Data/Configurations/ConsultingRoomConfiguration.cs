@@ -22,6 +22,8 @@ namespace ClinicManagementSystem.Infrastructure.Data.Configurations
             builder.Property(cr => cr.IsActive)
                 .IsRequired();
 
+            builder.HasIndex(cr => cr.Name).IsUnique();
+
             builder.HasMany(cr => cr.Appointments)
                 .WithOne(a => a.ConsultingRoom)
                 .HasForeignKey(a => a.ConsultingRoomId);

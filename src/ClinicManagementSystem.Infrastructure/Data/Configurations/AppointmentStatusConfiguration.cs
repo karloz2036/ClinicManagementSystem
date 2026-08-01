@@ -19,6 +19,8 @@ namespace ClinicManagementSystem.Infrastructure.Data.Configurations
             builder.Property(s => s.IsActive)
                 .IsRequired();
 
+            builder.HasIndex(s => s.Name).IsUnique();
+
             builder.HasMany(s => s.Appointments)
                 .WithOne(a => a.AppointmentStatus)
                 .HasForeignKey(a => a.AppointmentStatusId);

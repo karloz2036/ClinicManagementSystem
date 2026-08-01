@@ -22,6 +22,8 @@ namespace ClinicManagementSystem.Infrastructure.Data.Configurations
             builder.Property(s => s.IsActive)
                 .IsRequired();
 
+            builder.HasIndex(s => s.Name).IsUnique();
+
             builder.HasMany(s => s.DoctorSpecialties)
                 .WithOne(ds => ds.Specialty)
                 .HasForeignKey(ds => ds.SpecialtyId);

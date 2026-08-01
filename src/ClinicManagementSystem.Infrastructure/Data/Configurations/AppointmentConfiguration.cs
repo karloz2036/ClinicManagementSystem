@@ -21,7 +21,7 @@ namespace ClinicManagementSystem.Infrastructure.Data.Configurations
                 .IsRequired();
 
             builder.Property(a => a.Notes)
-                .HasColumnType("nvarchar(max)");
+                .HasMaxLength(1000);
 
             builder.Property(a => a.CreatedAt)
                 .HasColumnType("datetime2")
@@ -42,6 +42,9 @@ namespace ClinicManagementSystem.Infrastructure.Data.Configurations
             builder.HasOne(a => a.AppointmentStatus)
                 .WithMany(s => s.Appointments)
                 .HasForeignKey(a => a.AppointmentStatusId);
+
+            builder.HasIndex(a => new { a.DoctorId, a.StartDateTime, a.EndDateTime });
+            builder.HasIndex(a => new { a.ConsultingRoomId, a.StartDateTime, a.EndDateTime });
         }
     }
 }

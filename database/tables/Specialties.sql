@@ -5,6 +5,7 @@ BEGIN
 		[Id] INT IDENTITY(1,1) NOT NULL CONSTRAINT [PK_Specialties] PRIMARY KEY,
 		[Name] NVARCHAR(50) NOT NULL,
 		[Description] NVARCHAR(500) NULL,
-		[IsActive] BIT NOT NULL CONSTRAINT [DF_Specialties_IsActive] DEFAULT (1)
+		[IsActive] BIT NOT NULL CONSTRAINT [DF_Specialties_IsActive] DEFAULT (1),
+		CONSTRAINT [UQ_Specialties_Name] UNIQUE ([Name])
 	);
 END

@@ -49,7 +49,7 @@ namespace ClinicManagementSystem.Application.Features.Patients.Services
         {
             var patient = await _patientRepository.GetByIdAsync(id, cancellationToken);
 
-            if (patient is null)
+            if (patient == null)
                 return null;
 
             return MapToDto(patient);
@@ -122,7 +122,7 @@ namespace ClinicManagementSystem.Application.Features.Patients.Services
             return MapToDto(updatedPatient);
         }
 
-        public async Task<PatientDto?> UpdateStatus(int patientId, UpdatePatientStatusDto dto, CancellationToken cancellationToken = default)
+        public async Task<PatientDto?> UpdateStatusAsync(int patientId, UpdatePatientStatusDto dto, CancellationToken cancellationToken = default)
         {
             var patient = await _patientRepository.GetByIdForUpdateAsync(patientId, cancellationToken);
 
@@ -149,14 +149,16 @@ namespace ClinicManagementSystem.Application.Features.Patients.Services
             return new PatientDto
             {
                 Id = patient.Id,
-                Name = patient.FirstName,
+                FirstName = patient.FirstName,
                 LastName = patient.LastName,
-                BirthDate = patient.DateOfBirth,
+                DateOfBirth = patient.DateOfBirth,
                 GenderId = patient.GenderId,
                 GenderName = patient.Gender.Name,
                 PhoneNumber = patient.PhoneNumber,
                 Email = patient.Email,
-                IsActive = patient.IsActive
+                Address = patient.Address,
+                IsActive = patient.IsActive,
+                CreatedAt = patient.CreatedAt
             };
         }
 

@@ -1,14 +1,17 @@
-namespace ClinicManagementSystem.Domain.Entities
+namespace ClinicManagementSystem.Domain.Entities;
+
+public class DoctorSpecialty
 {
-    public class DoctorSpecialty
+    private DoctorSpecialty() { }
+
+    public int DoctorId { get; private set; }
+    public int SpecialtyId { get; private set; }
+    public Doctor Doctor { get; private set; } = null!;
+    public Specialty Specialty { get; private set; } = null!;
+
+    public static DoctorSpecialty Create(int specialtyId)
     {
-        public int DoctorId { get; set; }
-
-        public int SpecialtyId { get; set; }
-
-        // Navigation properties (non-nullable to match NOT NULL FKs in the database)
-        public Doctor Doctor { get; set; } = null!;
-
-        public Specialty Specialty { get; set; } = null!;
+        if (specialtyId <= 0) throw new ArgumentException("Specialty id must be greater than zero.");
+        return new DoctorSpecialty { SpecialtyId = specialtyId };
     }
 }

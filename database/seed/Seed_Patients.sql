@@ -1,6 +1,7 @@
 -- Seed data: 10 test patients
 SET NOCOUNT ON;
 
+IF NOT EXISTS (SELECT 1 FROM dbo.Patients)
 INSERT INTO dbo.Patients (FirstName, LastName, DateOfBirth, GenderId, PhoneNumber, Email, Address, IsActive)
 VALUES
 	('Carlos', 'Ramirez', '1985-03-12', 1, '555-0100', 'carlos.ramirez@example.com', '123 Main St, City', 1),

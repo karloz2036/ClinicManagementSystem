@@ -4,6 +4,7 @@ BEGIN
 	(
 		[Id] INT IDENTITY(1,1) NOT NULL CONSTRAINT [PK_Genders] PRIMARY KEY,
 		[Name] NVARCHAR(25) NOT NULL,
-		[IsActive] BIT NOT NULL CONSTRAINT [DF_Genders_IsActive] DEFAULT (1)
+		[IsActive] BIT NOT NULL CONSTRAINT [DF_Genders_IsActive] DEFAULT (1),
+		CONSTRAINT [UQ_Genders_Name] UNIQUE ([Name])
 	);
 END

@@ -9,11 +9,16 @@ BEGIN
 		[AppointmentStatusId] INT NOT NULL,
 		[StartDateTime] DATETIME2 NOT NULL,
 		[EndDateTime] DATETIME2 NOT NULL,
-		[Notes] NVARCHAR(MAX) NULL,
+		[Notes] NVARCHAR(1000) NULL,
 		[CreatedAt] DATETIME2 NOT NULL CONSTRAINT [DF_Appointments_CreatedAt] DEFAULT (SYSDATETIME()),
 		CONSTRAINT [FK_Appointments_Patients] FOREIGN KEY ([PatientId]) REFERENCES [dbo].[Patients]([Id]),
 		CONSTRAINT [FK_Appointments_Doctors] FOREIGN KEY ([DoctorId]) REFERENCES [dbo].[Doctors]([Id]),
 		CONSTRAINT [FK_Appointments_ConsultingRooms] FOREIGN KEY ([ConsultingRoomId]) REFERENCES [dbo].[ConsultingRooms]([Id]),
 		CONSTRAINT [FK_Appointments_AppointmentStatuses] FOREIGN KEY ([AppointmentStatusId]) REFERENCES [dbo].[AppointmentStatus]([Id])
 	);
+
+	CREATE INDEX [IX_Appointments_Doctor_Schedule]
+		ON [dbo].[Appointments] ([DoctorId], [StartDateTime], [EndDateTime]);
+	CREATE INDEX [IX_Appointments_Room_Schedule]
+		ON [dbo].[Appointments] ([ConsultingRoomId], [StartDateTime], [EndDateTime]);
 END
