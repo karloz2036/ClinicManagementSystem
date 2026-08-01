@@ -43,7 +43,7 @@ public class ConsultingRoomService : IConsultingRoomService
     {
         var entity = await _repository.GetByIdAsync(id, true, cancellationToken);
         if (entity is null) return null;
-        if (dto.IsActive) entity.Deactivate(); else entity.Activate();
+        if (dto.IsActive) entity.Activate(); else entity.Deactivate();
         await _repository.SaveChangesAsync(cancellationToken);
         return Map(entity);
     }
