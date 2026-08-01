@@ -49,7 +49,7 @@ public class Doctor
 
     public void ReplaceSpecialties(IEnumerable<int> specialtyIds)
     {
-        var ids = specialtyIds.ToList();
+        var ids = specialtyIds.Distinct().ToList();
         if (ids.Count == 0) throw new ArgumentException("A doctor must have at least one specialty.");
         var currentIds = DoctorSpecialties.Select(ds => ds.SpecialtyId).ToHashSet();
         var removed = DoctorSpecialties.Where(ds => !ids.Contains(ds.SpecialtyId)).ToList();
