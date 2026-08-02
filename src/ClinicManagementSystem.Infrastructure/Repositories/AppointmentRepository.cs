@@ -32,7 +32,7 @@ public class AppointmentRepository : IAppointmentRepository
         _context.Appointments.AnyAsync(a =>
             a.DoctorId == doctorId && a.ConsultingRoomId == consultingRoomId &&
             (!excludedAppointmentId.HasValue || a.Id != excludedAppointmentId.Value) &&
-            a.StartDateTime <= end && a.EndDateTime >= start,
+            a.StartDateTime < end && a.EndDateTime > start,
             cancellationToken);
 
     public async Task AddAsync(Appointment appointment, CancellationToken cancellationToken = default)
