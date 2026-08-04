@@ -27,13 +27,24 @@ public class AppointmentRepository : IAppointmentRepository
         return await query.FirstOrDefaultAsync(a => a.Id == id, cancellationToken);
     }
 
-    public Task<bool> HasScheduleConflictAsync(int doctorId, int consultingRoomId, DateTime start, DateTime end,
-        int? excludedAppointmentId = null, CancellationToken cancellationToken = default) =>
-        _context.Appointments.AnyAsync(a =>
-            a.DoctorId == doctorId && a.ConsultingRoomId == consultingRoomId &&
+    public async Task<bool> HasScheduleConflictAsync(int doctorId, int consultingRoomId, DateTime start, DateTime end,
+        int? excludedAppointmentId = null, CancellationToken cancellationToken = default)
+    {
+        var consultingRoomValidation = await _context.Appointments.AnyAsync(a =>
+                                                a.ConsultingRoomId == consultingRoomId &&
+                                                (!excludedAppointmentId.HasValue || a.Id != excludedAppointmentId.Value) &&
+                                                a.StartDateTime < end && a.EndDateTime > start,
+                                                cancellationToken);
+
+        var doctorValidation = await _context.Appointments.AnyAsync(a =>
+            a.DoctorId == doctorId &&
             (!excludedAppointmentId.HasValue || a.Id != excludedAppointmentId.Value) &&
             a.StartDateTime < end && a.EndDateTime > start,
             cancellationToken);
+
+        return consultingRoomValidation || doctorValidation;
+    }
+
 
     public async Task AddAsync(Appointment appointment, CancellationToken cancellationToken = default)
     {
